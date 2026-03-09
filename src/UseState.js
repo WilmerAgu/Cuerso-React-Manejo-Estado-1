@@ -7,15 +7,6 @@ function UseState( { name} ){
     React.useEffect( () => {
         console.log("Empezando el edecto");
 
-        if (!!loading){
-            setTimeout(() => {
-            console.log("Haciendo la valildacion");
-
-            setLoading(false);
-
-            console.log("terminando la validacion");
-        }, 3000);
-        }
 
         console.log("terminando el efecto")
     }, [loading]);

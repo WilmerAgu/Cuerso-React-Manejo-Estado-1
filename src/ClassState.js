@@ -1,5 +1,6 @@
-import { computeHeadingLevel } from '@testing-library/dom';
 import React from 'react';
+import { Loading } from './Loading';
+
 
 class ClassState extends React.Component{
     constructor(props) {
@@ -11,16 +12,26 @@ class ClassState extends React.Component{
         };
     }
 
-    componentWillMount() {
-        console.log("componentWillMount")
-    }
-    componentDidMount(){
-        console.log("componentDidMount")
-    }
-    componentWillUnmount() {
-        console.log("componentWillUnmount")
-    }
+    // UNSAFE_componentWillMount() {
+    //     console.log("componentWillMount")
+    // }
+    // componentDidMount(){
+    //     console.log("componentDidMount")
+    // }
     
+  
+    componentDidUpdate(){
+        console.log('actualizacion');
+         if (!!this.state.loading){
+                setTimeout(() => {
+                console.log("Haciendo la valildacion");
+
+                this.setState( {loading: false});
+
+                console.log("terminando la validacion");
+            }, 3000);
+        }
+    }
     render() {
         return(
             <div>
@@ -32,7 +43,7 @@ class ClassState extends React.Component{
                     <p>Error: el codigo es incorrecto</p>
                 )}
                 {this.state.loading && (
-                    <p>Cargando...</p>
+                  <Loading />  
                 )}
 
                 <input placeholder="Codigo de seguridad" />
